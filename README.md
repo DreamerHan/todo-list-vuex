@@ -1,4 +1,4 @@
-# todo-list-vuex
+# todo-list-vuex-vueRouter
 
 > \"todo-list脚手架形式书写vuex传参\"
 
@@ -19,3 +19,7 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+【2018-10-14】
+
+添加了vuex方式获取处理数据逻辑
