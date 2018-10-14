@@ -1,4 +1,4 @@
-# todo-list-vuex-vueRouter
+# todo-list-vuex-router
 
 > \"todo-list脚手架形式书写vuex传参\"
 
