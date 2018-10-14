@@ -11,13 +11,12 @@
 export default {
     data(){
         return {
-            addVal : '',
-            taskList : this.$store.state.taskList
+            addVal : ''
         }
     },
     methods : {
         handleAddTodo(){
-            if( !this.addVal ) {
+            if( !this.addVal.trim() ) {
                 alert('请填写后再进行添加！');
                 return;
             } 

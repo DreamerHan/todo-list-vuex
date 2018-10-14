@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-let store = new Vuex.Store({
+const store = new Vuex.Store({
     state: {
         taskList: []
     },
@@ -30,10 +30,15 @@ let store = new Vuex.Store({
         }
     },
     actions: {
-        async getTaskListAction(store, payload) {
-            let tasks = await JSON.parse(localStorage.getItem('todo-list-vuex')) || [];
+        getTaskListAction(store, payload) {
+            new Promise((resolve, reject) => {
+                    let taskList = JSON.parse(localStorage.getItem('todo-list-vuex')) || []
 
-            return store.commit('getTaskListMutation', tasks);
+                    resolve(taskList)
+                })
+                .then((data) => {
+                    store.commit('getTaskListMutation', data);
+                })
         }
     }
 });

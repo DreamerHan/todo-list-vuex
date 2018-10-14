@@ -1,8 +1,8 @@
 <template>
-    <section class="main" v-if="tasks.length">
+    <section class="main" v-if="taskList.length">
         <input class="toggle-all" type="checkbox" v-model="isCheckedAll"/>
         <ul class="todo-list">
-            <li v-for="(item,index) of tasks" :key="item.id"
+            <li v-for="(item,index) of taskList" :key="item.id"
                 :class="{completed : item.checked, editing : index === editIndex}"
             >
                 <div class="view">
@@ -21,11 +21,13 @@
 </template>
 <script>
 export default {
+    props : {
+        taskList : Array
+    },
     data(){
         return {
             editIndex : -1,
-            beforeEdit : '',
-            tasks : []
+            beforeEdit : ''
         }
     },
     methods : {
@@ -33,7 +35,7 @@ export default {
             this.$store.commit('deleteMutation', item);
         },
         handleEdit(index){ //编辑
-            this.beforeEdit = this.$store.state.taskList[index].title;
+            this.beforeEdit = this.taskList[index].title;
             this.editIndex = index;
         },
         handleDoneEdit(ev, item){ //编辑完成
@@ -56,18 +58,12 @@ export default {
     computed : {
         isCheckedAll : {
             get(){
-                return this.tasks.every( item => item.checked );
+                return this.taskList.every( item => item.checked );
             },
             set(newVal){
-                return this.tasks.forEach( item => item.checked = newVal );
+                return this.taskList.forEach( item => item.checked = newVal );
             }
         }
-    },
-    created(){
-        this.$store.dispatch('getTaskListAction').then( () => {
-            this.tasks = this.$store.state.taskList;
-            console.log(this.tasks);
-        } )
     }
 }
 </script>

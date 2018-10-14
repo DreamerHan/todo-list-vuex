@@ -2,7 +2,7 @@
     <div id="app">
         <section class="todoapp">
             <todoHeader></todoHeader>
-            <todoContent></todoContent>
+            <todoContent :taskList="taskList"></todoContent>
             <todoFoot></todoFoot>
         </section>
     </div>
@@ -14,9 +14,9 @@ import todoContent from '@/components/content';
 import todoFoot from '@/components/footer'; 
 
 export default {
-    data(){
-        return {
-            taskList : this.$store.state.taskList
+    computed : {
+        taskList(){
+            return this.$store.state.taskList
         }
     },
     watch : {
@@ -31,6 +31,9 @@ export default {
         todoHeader,
         todoContent,
         todoFoot
-    }    
+    },
+    created(){
+        this.$store.dispatch('getTaskListAction');
+    }   
 }
 </script>
