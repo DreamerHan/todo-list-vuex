@@ -25,14 +25,14 @@ const store = new Vuex.Store({
 
             state.taskList.splice(posIndex, 1);
         },
-        getTaskListMutation(state, payload) {
+        getTaskListMutation(state, payload) { //获取数据
             state.taskList = payload;
         }
     },
     actions: {
         getTaskListAction(store, payload) {
             new Promise((resolve, reject) => {
-                    let taskList = JSON.parse(localStorage.getItem('todo-list-vuex')) || []
+                    let taskList = JSON.parse(localStorage.getItem('todo-list-vuex-router')) || []
 
                     resolve(taskList)
                 })

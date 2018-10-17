@@ -2,8 +2,8 @@
     <div id="app">
         <section class="todoapp">
             <todoHeader></todoHeader>
-            <todoContent :taskList="taskList"></todoContent>
-            <todoFoot></todoFoot>
+            <todoContent :taskList="filterTaskList"></todoContent>
+            <todoFoot :taskStatus="taskStatus"></todoFoot>
         </section>
     </div>
 </template>
@@ -14,17 +14,38 @@ import todoContent from '@/components/content';
 import todoFoot from '@/components/footer'; 
 
 export default {
+    data(){
+        return {
+            taskStatus : 'all'
+        }
+    },
     computed : {
         taskList(){
             return this.$store.state.taskList
+        },
+        filterTaskList(){
+            switch (this.taskStatus) {
+                case 'all':
+                    return this.taskList;
+                    break;
+                case 'active':
+                    return this.taskList.filter( item => !item.checked );
+                    break;
+                case 'completed':
+                    return this.taskList.filter( item => item.checked );
+                    break;   
+            }
         }
     },
     watch : {
         taskList : {
             handler(){
-                localStorage.setItem('todo-list-vuex', JSON.stringify(this.taskList) );
+                localStorage.setItem('todo-list-vuex-router', JSON.stringify(this.taskList) );
             },
             deep : true
+        },
+        '$route'(to, from){
+            this.taskStatus = to.name;
         }
     },
     components : {
