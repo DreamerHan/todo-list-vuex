@@ -1,6 +1,6 @@
 # todo-list-vuex-router
 
-> \"todo-list脚手架形式书写vuex传参\"
+> \"todo-list脚手架形式书写vuex传参,vue-router筛选数据\"
 
 ## Build Setup
 
@@ -23,3 +23,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 【2018-10-14】
 
 添加了vuex方式获取处理数据逻辑
+
+【2018-10-17】
+
+添加路由，完善路由变化数据筛选功能
